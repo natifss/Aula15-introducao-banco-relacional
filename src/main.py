@@ -72,11 +72,15 @@ def deletar_manutencao(id: int):
                                 status_code=HTTPStatus.NOT_FOUND)
 
         if Manutencao.data_finalizacao:
-            return JSONResponse(content={"message": "Manutenção já finalizada"},
+            return JSONResponse(content=None,
                                 status_code=HTTPStatus.BAD_REQUEST)
         
         session.delete(Manutencao)
         session.commit()
-        
+        return JSONResponse(
+            content=None,
+            status_code=HTTPStatus.NO_CONTENT
+        )
+
     
 
